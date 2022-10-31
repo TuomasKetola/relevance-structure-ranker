@@ -1,0 +1,21 @@
+{
+    "dbpedia":{
+        "fields": ["label" , "attributes" , "categories" , "related_entities", "similar_entities"],
+        "total_doc_count":4641889,
+        "empty_fields": {
+                    "similar_entities": 1869980,
+                    "label": 940,
+                    "attributes": 0,
+                    "categories": 41688,
+                    "related_entities": 1832508
+            }
+    },
+    "trec-web": {
+        "fields": ["title", "body"],
+        "total_doc_count":212591,
+        "empty_fields": {
+                    "title": 3062,
+                    "body": 361
+        }
+    }
+}
