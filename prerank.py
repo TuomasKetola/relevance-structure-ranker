@@ -152,8 +152,10 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
             except KeyError:
                 result_set[doc_id] = {
                         }
+            elastic_id = hit['_id']
             result_set[doc_id][feature] = {
                                             'score':0.0,
+                                            'elastic_id': elastic_id,
                                             'terms':[],
                                             'term_tfs':{},
                                             'term_idfs': {},
@@ -214,7 +216,9 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
             except KeyError:
                 result_set[doc_id] = {
                         }
+            elastic_id = hit['_id']
             result_set[doc_id][feature] = {
+                                            'elastic_id':elastic_id,
                                             'score':0.0,
                                             'terms':[],
                                             'term_tfs':{},
@@ -351,10 +355,16 @@ def make_numpy_arrs(query_data, index_name):
 
     results = query_data['results']
     doc_ids = []
+    elastic_ids = []
     bm25f_score_lst = []
     concat_dls = []
     for document, data in results.items():
         doc_ids.append(document)
+        for field in fields:
+            if 'elastic_id' in data[field].keys():
+                elastic_ids.append(data[field]['elastic_id'])
+                break
+
         for field in fields:
             doc_field_data = data[field]
             tf_vect = [doc_field_data['term_tfs'][term]  for term in terms]
@@ -365,7 +375,7 @@ def make_numpy_arrs(query_data, index_name):
             field_scores[field].append(score)
             if doc_field_data['avgfl']:
                 avg_fl_dict[field] = doc_field_data['avgfl']
-
+            
 
     field_tfs = np.dstack(list(field_tfs.values()))
 
@@ -432,6 +442,7 @@ def make_numpy_arrs(query_data, index_name):
     query_data['numpy_data']['p_t_f'] = p_t_f
     query_data['numpy_data']['p_t_d'] = p_t_d
     query_data['numpy_data']['doc_ids'] = doc_ids
+    query_data['numpy_data']['elastic_ids'] = elastic_ids
     query_data['numpy_data']['avgfl'] = np.array(list(avg_fl_dict.values())).reshape(1,1,len(fields))
 
 

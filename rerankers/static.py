@@ -4,7 +4,7 @@ def rankerFunction(fields, query_data):
 
     arr_data = query_data['numpy_data']
     scores = arr_data['bm25_scores_arr'].sum(axis=1)
-    doc_ids = arr_data['doc_ids']
+    doc_ids = arr_data['elastic_ids']
     doc_score_lst = list(zip(doc_ids,scores.tolist()))
     return doc_score_lst, arr_data['bm25_scores_arr']
 

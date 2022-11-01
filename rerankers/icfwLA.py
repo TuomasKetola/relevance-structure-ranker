@@ -5,7 +5,7 @@ def rankerFunction(fields, query_data, datasetInfo):
     # calculate lambda
     arr_data = query_data['numpy_data']
     field_scores = arr_data['bm25_scores_arr']
-    doc_ids = arr_data['doc_ids']
+    doc_ids = arr_data['elastic_ids']
     df_arr = arr_data['df_arr']
     idf_arr = arr_data['idf_arr']
     empty_fields = datasetInfo['empty_fields']
@@ -42,7 +42,7 @@ def rankerFunction(fields, query_data, datasetInfo):
     
     aggregated_scores = weighted_arr.sum(axis=1)
     
-    doc_ids = arr_data['doc_ids']
+    doc_ids = arr_data['elastic_ids']
     doc_score_lst = list(zip(doc_ids,aggregated_scores.tolist()))
 
     doc_score_lst = sorted(doc_score_lst, key=lambda x: x[1], reverse=True)

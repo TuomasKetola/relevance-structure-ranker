@@ -2,7 +2,7 @@ import prerank
 import argparse
 import json
 
-from rankers import static, icfwLA
+from rerankers import static, icfwLA
 
 def import_json(path):
     with open(path, 'r') as in_:
@@ -17,7 +17,7 @@ def import_json(path):
     return dataSetInfo
 
 
-def rerank(query, index_name, model_name):
+def retrieve(query, index_name, model_name):
     models = {
             'static': static,
             'icfwLA': icfwLA}
@@ -40,5 +40,5 @@ if __name__ == '__main__':
     index_name = args.index_name
     query = args.query
     model_name = args.model_name
-    rerank(query, index_name, model_name)
+    retrieve(query, index_name, model_name)
 
