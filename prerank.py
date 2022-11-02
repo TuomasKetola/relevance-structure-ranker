@@ -16,6 +16,9 @@ import pickle
 
 import argparse
 
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 
 def import_json(path):
     with open(path, 'r') as in_:
@@ -32,7 +35,8 @@ def stemText(txt_tokens):
 def connectES(password, host):
     es = Elasticsearch(
     host,
-    ca_certs="/homes/tjhk3/eecs-ir/ecir23-elastic/elasticsearch-8.3.2/config/certs/http_ca.crt",
+    # ca_certs="/homes/tjhk3/eecs-ir/ecir23-elastic/elasticsearch-8.3.2/config/certs/http_ca.crt",
+    verify_certs=False,
     basic_auth=("elastic", password)
         )
     return es
