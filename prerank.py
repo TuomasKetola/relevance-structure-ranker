@@ -35,8 +35,8 @@ def stemText(txt_tokens):
 def connectES(password, host):
     es = Elasticsearch(
     host,
-    # ca_certs="/homes/tjhk3/eecs-ir/ecir23-elastic/elasticsearch-8.3.2/config/certs/http_ca.crt",
-    verify_certs=False,
+    ca_certs="/Users/tuomasketola/Dropbox/phd_files/searchEngineApp/relevance-structure-ranker/certs/http_ca.crt",
+    # verify_certs=False,
     basic_auth=("elastic", password)
         )
     return es
@@ -368,6 +368,8 @@ def make_numpy_arrs(query_data, index_name):
             if 'elastic_id' in data[field].keys():
                 elastic_ids.append(data[field]['elastic_id'])
                 break
+            else:
+                pass
 
         for field in fields:
             doc_field_data = data[field]
@@ -377,12 +379,16 @@ def make_numpy_arrs(query_data, index_name):
             field_tfs[field].append(tf_vect)
             field_lengths[field].append(fl)
             field_scores[field].append(score)
+        
             if doc_field_data['avgfl']:
                 avg_fl_dict[field] = doc_field_data['avgfl']
+        # if document == '260-1379':
+            # import pdb;pdb.set_trace()
+
+
             
 
     field_tfs = np.dstack(list(field_tfs.values()))
-
     field_scores_= np.array(list(field_scores.values())).T
 
     # doc lenghths
@@ -468,7 +474,8 @@ def retrieve_documents(query, index_name):
     es = connectES(ES_PASSWORD, "https://localhost:9200")
 
     if es.ping():
-        print('ES instance running succesfully')
+        # print('ES instance running succesfully')
+        pass
     else:
         print('ping did not work')
 

@@ -1,4 +1,8 @@
 #
+#
+certs/http_ca.crt
+etc/
+pyvenv.cfg
 bin/
 include/
 lib64

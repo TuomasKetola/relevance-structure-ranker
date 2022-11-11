@@ -43,10 +43,18 @@ def rankerFunction(fields, query_data, datasetInfo):
     aggregated_scores = weighted_arr.sum(axis=1)
     
     doc_ids = arr_data['elastic_ids']
-    doc_score_lst = list(zip(doc_ids,aggregated_scores.tolist()))
+    
 
-    doc_score_lst = sorted(doc_score_lst, key=lambda x: x[1], reverse=True)
-    return doc_score_lst, field_weights
+    field_weights[field_scores == 0]  = 0
+
+    score_weights = list(zip(aggregated_scores.tolist(), field_weights.tolist()))
+    sorted_weights = [x[1] for x in sorted(score_weights, key=lambda x:x[0], reverse=True)]
+    sorted_weights = np.array(sorted_weights)
+
+    score_doc_id = list(zip(doc_ids,aggregated_scores.tolist()))
+    sorted_doc_score_lst = sorted(score_doc_id, key=lambda x:x[1])
+
+    return sorted_doc_score_lst, sorted_weights
 
 
 def rerank(query_data, datasetInfo):
