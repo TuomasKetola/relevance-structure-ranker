@@ -34,10 +34,10 @@ def stemText(txt_tokens):
 
 def connectES(password, host):
     es = Elasticsearch(
-    host,
-    ca_certs="/Users/tuomasketola/Dropbox/phd_files/searchEngineApp/relevance-structure-ranker/certs/http_ca.crt",
-    # verify_certs=False,
-    basic_auth=("elastic", password)
+        host,
+        ca_certs="/Users/tuomasketola/Dropbox/phd_files/searchEngineApp/relevance-structure-ranker/certs/http_ca.crt",
+        # verify_certs=False,
+        basic_auth=("elastic", password)
         )
     return es
 
@@ -108,7 +108,8 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
     uniqueIdDict = {
             'homedepot':'product_uid',
             'trec-web': 'docno',
-            'dbpedia': 'id'}
+            'dbpedia': 'id',
+            'imdb': 'movie_id'}
         
     for feature in fields:
         query_body = {
@@ -140,8 +141,9 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
                                 }
                             }
                   }
+        
         resp = es.search(index=index_name, body = query_body, explain=True,size=1000)
-        resp2 = es.search(index=index_name, body = query_body_2, explain=True,size=1000)
+        resp2 = es.search(index=index_name, body = query_body_2, explain=True,size=1000, request_timeout=30)
         # query data
         query_str = query
         # normal docs 
@@ -280,7 +282,7 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
                                 avgfl = sub_metric_details['value']
                                 result_set[doc_id][feature]['avgfl'] = avgfl
 
-    query_terms = stemText(query.split(' '))
+    query_terms = query.split(' ')
     for doc_id, results in result_set.items():
         for feat in fields:
             if feat not in results.keys():
@@ -306,7 +308,8 @@ def make_numpy_arrs(query_data, index_name):
     field_dict = {
                 'trec-web':['title', 'body'],
                  'homedepot':['product_name', 'product_description','product_attributes'],
-                 'dbpedia': ["label" , "attributes" , "categories" , "related_entities", "similar_entities"]
+                 'dbpedia': ["label" , "attributes" , "categories" , "related_entities", "similar_entities"],
+                 'imdb': ["plot", "movie_name", "movie_languages", "movie_countries", "movie_genres", "actors", "characters", "actor_genders"]
                          }
     avg_fl_dict = {
                 field: None for field in field_dict[index_name]
@@ -341,7 +344,19 @@ def make_numpy_arrs(query_data, index_name):
                         "all": 0
                     },
                     "total_doc_count": 54668,
-                }
+                },
+                'imdb': {
+                    "total_doc_count":42303,
+        "empty_fields": {
+                     "plot": 0,
+                     "movie_name": 99,
+                     "movie_languages": 99,
+                     "movie_countries": 99,
+                     "movie_genres": 99,
+                     "actors": 4550,
+                     "characters": 19235,
+                     "actor_genders": 4816}
+            }
         }
 
 
@@ -352,7 +367,7 @@ def make_numpy_arrs(query_data, index_name):
             for field in fields}
 
     query_data['numpy_data'] = {}
-    terms = query_data['query'].split(' ')
+    terms = [x.lower() for x in query_data['query'].split(' ')]
     field_tfs = {field: [] for field in fields}
     field_lengths = {field: [] for field in fields}
     field_scores = {field: [] for field in fields}
@@ -457,11 +472,13 @@ def make_numpy_arrs(query_data, index_name):
 
 
 def retrieve_documents(query, index_name):
+    query = query.lower()
 
     # initialize query_data
     dataSetInfo = import_json('datasetInfo.json')
     fields = dataSetInfo[index_name]['fields']
-    query_terms = stemText(query.split(' '))
+    # query_terms = stemText(query.split(' '))
+    query_terms = [x.lower() for x in query.split(' ')]
     query_data = {
             'query':' '.join(query_terms),
             'q_term_idfs': {field:{} for  field in fields},

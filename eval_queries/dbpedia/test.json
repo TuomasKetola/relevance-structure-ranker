@@ -1,0 +1,21 @@
+{
+"query_id": "0",
+"query": "Abba eurovision",
+"seed_entity": "Abba",
+"potential_entities": [
+    "lordi",
+    "loreen",
+    "Adele",
+    "Lena"
+    ],
+"interesting_documents":[
+    "pQ7ZDYQBsf5Y_uzC1Ax5",
+    "6BRfDoQBsf5Y_uzCO629"
+    ],
+"qrels": [
+    ["0", "", "lordi", "2"],
+    ["0", "", "loreen", "1"],
+    ["0", "", "Adele", "0"],
+    ["0", "", "Lena", "2"]
+    ]
+}

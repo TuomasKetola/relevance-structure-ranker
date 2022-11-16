@@ -17,5 +17,18 @@
                     "title": 3062,
                     "body": 361
         }
-    }
+    },
+    "imdb":{
+        "fields": ["plot", "movie_name", "movie_languages", "movie_countries", "movie_genres", "actors", "characters", "actor_genders"],
+        "total_doc_count":42303,
+        "empty_fields": {
+                     "plot": 0,
+                     "movie_name": 99,
+                     "movie_languages": 99,
+                     "movie_countries": 99,
+                     "movie_genres": 99,
+                     "actors": 4550,
+                     "characters": 19235,
+                     "actor_genders": 4816}
+            }
 }

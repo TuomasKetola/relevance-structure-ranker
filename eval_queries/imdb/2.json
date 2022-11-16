@@ -1,0 +1,61 @@
+{
+  "query_id": "2",
+  "query": "italian mafia",
+  "seed_entity": "Pacino",
+  "interesting_documents": [
+    "UebLdYQB4U5l6a4-ykwz"
+  ],
+  "potential_entities": [
+    "Marlon Brando",
+    " Robert Deniro",
+    " Ray Liotta",
+    " Joe Pesci",
+    "Matt Damon",
+    "Al Capone",
+    "Michael Corleone"
+  ],
+  "qrels": [
+    [
+      "2",
+      "",
+      "Marlon Brando",
+      "2"
+    ],
+    [
+      "2",
+      "",
+      " Robert Deniro",
+      "2"
+    ],
+    [
+      "2",
+      "",
+      " Ray Liotta",
+      "2"
+    ],
+    [
+      "2",
+      "",
+      " Joe Pesci",
+      "2"
+    ],
+    [
+      "2",
+      "",
+      "Matt Damon",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Al Capone",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Michael Corleone",
+      "0"
+    ]
+  ]
+}

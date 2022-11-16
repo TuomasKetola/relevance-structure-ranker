@@ -1,0 +1,79 @@
+{
+  "query_id": "3",
+  "query": "United States of America female crime thriller",
+  "seed_entity": "Uma Thurman",
+  "interesting_documents": [
+    "UObKdYQB4U5l6a4-MCtu",
+    "I-bLdYQB4U5l6a4-YEQo",
+    "QebIdYQB4U5l6a4-0A4P",
+    "X-bLdYQB4U5l6a4-DD1U",
+    "buXGdYQB4U5l6a4-ueHa"
+  ],
+  "potential_entities": [
+    "Lorraine Bracco",
+    "Diane Keaton",
+    "Jodie Foster",
+    "Marlon Brando",
+    "Robert Deniro",
+    "Ray Liotta",
+    "Joe Pesci",
+    "Jason Stateham",
+    "Keanu Reeves"
+  ],
+  "qrels": [
+    [
+      "3",
+      "",
+      "Lorraine Bracco",
+      "2"
+    ],
+    [
+      "3",
+      "",
+      "Diane Keaton",
+      "2"
+    ],
+    [
+      "3",
+      "",
+      "Jodie Foster",
+      "2"
+    ],
+    [
+      "3",
+      "",
+      "Marlon Brando",
+      "0"
+    ],
+    [
+      "3",
+      "",
+      " Robert Deniro",
+      "0"
+    ],
+    [
+      "3",
+      "",
+      " Ray Liotta",
+      "0"
+    ],
+    [
+      "3",
+      "",
+      " Joe Pesci",
+      "0"
+    ],
+    [
+      "3",
+      "",
+      " Jason Stateham",
+      "0"
+    ],
+    [
+      "3",
+      "",
+      "Keanu Reeves",
+      "0"
+    ]
+  ]
+}

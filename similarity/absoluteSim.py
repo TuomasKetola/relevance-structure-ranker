@@ -11,15 +11,15 @@ def calc_similarity(fetch_ranking_topk, query, seed_entity, potential_entities, 
         topSimilarities = []
         for result_weight_vector in weights.tolist():
             result_weight_vector = np.array([result_weight_vector])
-            similarityMatrix = cosine_similarity(result_weight_vector, interesting_weights)
+            # similarityMatrix = cosine_similarity(result_weight_vector, interesting_weights)
+            similarityMatrix = 0 - (abs(interesting_weights - result_weight_vector)).sum(axis=1)
             topSim = similarityMatrix.sum()
             topSimilarities.append(topSim)
-        n = 2
+        n = 4
         max_N_ind = np.argpartition(topSimilarities, -n)[-n:]
         if index_name == 'dbpedia':
             top_labels = [es.get(index=index_name, id=ranking[x][0])['_source']['label'] for x in max_N_ind]
         elif index_name == 'imdb':
-
             top_labels = [es.get(index=index_name, id=ranking[x][0])['_source']['movie_name'] for x in max_N_ind]
         entity_rel[entity] = top_labels
         rank_score = np.array(topSimilarities).max()

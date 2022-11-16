@@ -1,0 +1,61 @@
+{
+  "query_id": "4",
+  "query": "Harrison Ford United States action",
+  "seed_entity": "Fugitive",
+  "interesting_documents": [
+    "SObMdYQB4U5l6a4-blkB"
+  ],
+  "potential_entities": [
+    "Indiana Jones",
+    "Air Force One",
+    "Patriot Games",
+    "Star Wars",
+    "Blade Runner",
+    "Enders Game",
+    "Working Girl"
+  ],
+  "qrels": [
+    [
+      "4",
+      "",
+      "Indiana Jones",
+      "2"
+    ],
+    [
+      "4",
+      "",
+      "Air Force One",
+      "2"
+    ],
+    [
+      "4",
+      "",
+      "Patriot Games",
+      "2"
+    ],
+    [
+      "4",
+      "",
+      "Star Wars",
+      "0"
+    ],
+    [
+      "4",
+      "",
+      "Blade Runner",
+      "0"
+    ],
+    [
+      "4",
+      "",
+      "Enders Game",
+      "0"
+    ],
+    [
+      "4",
+      "",
+      "Working Girl",
+      "0"
+    ]
+  ]
+}

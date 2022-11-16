@@ -6,8 +6,8 @@ def rankerFunction(fields, query_data, datasetInfo):
     arr_data = query_data['numpy_data']
     field_scores = arr_data['bm25_scores_arr']
     doc_ids = arr_data['elastic_ids']
-    df_arr = arr_data['df_arr']
-    idf_arr = arr_data['idf_arr']
+    df_arr = arr_data['global_df_arr']
+    idf_arr = arr_data['global_idf_arr']
     empty_fields = datasetInfo['empty_fields']
     N_total = datasetInfo['total_doc_count']
     N = [N_total - empty_fields[field] for field in fields]
@@ -19,14 +19,14 @@ def rankerFunction(fields, query_data, datasetInfo):
         shape = (nr_fields.shape[0],1 )
         lambda_= np.zeros(shape)
         return lambda_, None
-    max_dfs = df_arr.mean(axis=1).max()
-    min_dfs = df_arr[df_arr!=max_dfs].mean()
-    idf_arr = idf_arr[idf_arr > 0] 
+    df_arr = df_arr[idf_arr > 1.0]
+    max_dfs = df_arr.max()
+    min_dfs = df_arr[df_arr!=df_arr.max()].mean()
+    idf_arr = idf_arr[idf_arr > 1.0] 
     # idf_ratio = idf_arr.mean(axis=1).max()  / idf_arr[idf_arr!=idf_arr.max()].mean()
-    try:
-        idf_ratio = idf_arr.max()  / idf_arr[idf_arr!=idf_arr.max()].mean()
-    except:
-        import pdb;pdb.set_trace()
+    idf_max = idf_arr.max()
+    idf_min = idf_arr[idf_arr!=idf_arr.max()].mean()
+    idf_ratio = idf_max / idf_min
     Z = idf_ratio
 
     numerator = np.log((max_dfs*N**Z) / ((min_dfs**Z)*N))

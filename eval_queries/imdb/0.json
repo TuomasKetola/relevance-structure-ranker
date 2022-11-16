@@ -1,0 +1,54 @@
+{
+  "query_id": "0",
+  "query": "Clint Eastwood Western",
+  "seed_entity": "Wallach",
+  "interesting_documents": [
+    "neXHdYQB4U5l6a4-h_Vv"
+  ],
+  "potential_entities": [
+    "Wallach",
+    "Cleef",
+    "Inger",
+    "McLaine",
+    "John Wayne",
+    "Bee Vang"
+  ],
+  "qrels": [
+    [
+      "0",
+      "",
+      "Wallach",
+      "2"
+    ],
+    [
+      "0",
+      "",
+      "Cleef",
+      "2"
+    ],
+    [
+      "0",
+      "",
+      "Inger",
+      "2"
+    ],
+    [
+      "0",
+      "",
+      "McLaine",
+      "2"
+    ],
+    [
+      "0",
+      "",
+      "John Wayne",
+      "0"
+    ],
+    [
+      "0",
+      "",
+      "Bee Vang",
+      "0"
+    ]
+  ]
+}

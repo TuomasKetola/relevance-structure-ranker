@@ -1,0 +1,56 @@
+{
+  "query_id": "1",
+  "query": "italian mafia",
+  "seed_entity": "Vito Corleone",
+  "interesting_documents": [
+    "YeXFdYQB4U5l6a4-0sza",
+    "q-bMdYQB4U5l6a4-WVfe",
+    "UebLdYQB4U5l6a4-ykwz"
+  ],
+  "potential_entities": [
+    "Al Capone",
+    "Michael Corleone",
+    "Matt Damon",
+    "Frank Lukas",
+    "Frank Costello",
+    "Wilson Fisk"
+  ],
+  "qrels": [
+    [
+      "1",
+      "",
+      "Al Capone",
+      "2"
+    ],
+    [
+      "1",
+      "",
+      "Michael Corleone",
+      "2"
+    ],
+    [
+      "1",
+      "",
+      "Matt Damon",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Frank Lukas",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Frank Costello",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Wilson Fisk",
+      "0"
+    ]
+  ]
+}
