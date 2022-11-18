@@ -33,21 +33,22 @@ def stemText(txt_tokens):
 
 
 def connectES(password, host):
-    try:
-        es = Elasticsearch(
+    es = Elasticsearch(
             host,
             ca_certs="/Users/tuomasketola/Dropbox/phd_files/searchEngineApp/relevance-structure-ranker/certs/http_ca.crt",
             # verify_certs=False,
             basic_auth=("elastic", password)
             )
-    except:
+    if es.ping():
+        return es
+    else:
         es = Elasticsearch(
-            host,
-            ca_certs="/homes/tjhk3/eecs-ir/ecir23-elastic/elasticsearch-8.3.2/config/certs/http_ca.crt",
-            # verify_certs=False,
-            basic_auth=("elastic", password)
-            )
-    return es
+                host,
+                ca_certs="/homes/tjhk3/eecs-ir/ecir23-elastic/elasticsearch-8.3.2/config/certs/http_ca.crt",
+                # verify_certs=False,
+                basic_auth=("elastic", password)
+                )
+        return es
 
 
 def retrieveBM25F(query, fields, es, query_data, index_name):

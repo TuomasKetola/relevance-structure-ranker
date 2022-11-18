@@ -18,11 +18,21 @@ def fetch_ranking_topk(query, index_name, model_name, k=100):
 
 def connectES(password, host):
     es = Elasticsearch(
-    host,
-    ca_certs="/Users/tuomasketola/Dropbox/phd_files/searchEngineApp/relevance-structure-ranker/certs/http_ca.crt",
-    basic_auth=("elastic", password)
-        )
-    return es
+            host,
+            ca_certs="/Users/tuomasketola/Dropbox/phd_files/searchEngineApp/relevance-structure-ranker/certs/http_ca.crt",
+            # verify_certs=False,
+            basic_auth=("elastic", password)
+            )
+    if es.ping():
+        return es
+    else:
+        es = Elasticsearch(
+                host,
+                ca_certs="/homes/tjhk3/eecs-ir/ecir23-elastic/elasticsearch-8.3.2/config/certs/http_ca.crt",
+                # verify_certs=False,
+                basic_auth=("elastic", password)
+                )
+        return es
 
 
 def calc_ndcg(query_id, ranking, q_qrels,k):
