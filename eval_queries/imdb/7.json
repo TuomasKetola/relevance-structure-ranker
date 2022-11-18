@@ -1,0 +1,95 @@
+{
+  "query_id": "7",
+  "query": "wizard magic spells",
+  "seed_entity": "Hermione",
+  "interesting_documents": [
+    "sObIdYQB4U5l6a4-pgqk",
+    "p-XHdYQB4U5l6a4-3PyT",
+    "CObKdYQB4U5l6a4-mTRz",
+    "1ubMdYQB4U5l6a4-v1_f",
+    "leXGdYQB4U5l6a4-C9Ej",
+    "7ObKdYQB4U5l6a4-izJC",
+    "3-bJdYQB4U5l6a4-hh2h"
+  ],
+  "potential_entities": [
+    "Harry Potter",
+    " Ron Weasley",
+    " Aladin",
+    "Bilbo Baggins",
+    "Emma Watson",
+    "Robin Williams",
+    "Rupert GrintThelma Teddy Shaw",
+    "Margot",
+    "Frula Trueba",
+    "Terry McCaleb",
+    "Professor Horvard"
+  ],
+  "qrels": [
+    [
+      "7",
+      "",
+      "Harry Potter",
+      "2"
+    ],
+    [
+      "7",
+      "",
+      " Ron Weasley",
+      "2"
+    ],
+    [
+      "7",
+      "",
+      " Aladin",
+      "2"
+    ],
+    [
+      "7",
+      "",
+      "Bilbo Baggins",
+      "2"
+    ],
+    [
+      "7",
+      "",
+      "Emma Watson",
+      "0"
+    ],
+    [
+      "7",
+      "",
+      "Robin Williams",
+      "0"
+    ],
+    [
+      "7",
+      "",
+      "Rupert GrintThelma Teddy Shaw",
+      "0"
+    ],
+    [
+      "7",
+      "",
+      "Margot",
+      "0"
+    ],
+    [
+      "7",
+      "",
+      "Frula Trueba",
+      "0"
+    ],
+    [
+      "7",
+      "",
+      "Terry McCaleb",
+      "0"
+    ],
+    [
+      "7",
+      "",
+      "Professor Horvard",
+      "0"
+    ]
+  ]
+}

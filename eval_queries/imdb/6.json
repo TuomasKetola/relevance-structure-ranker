@@ -1,0 +1,113 @@
+{
+  "query_id": "6",
+  "query": "wizard magic spells",
+  "seed_entity": "Daniel Radcliffe",
+  "interesting_documents": [
+    "p-XHdYQB4U5l6a4-3PyT",
+    "sObIdYQB4U5l6a4-pgqk",
+    "eXGdYQB4U5l6a4-C9Ej",
+    "CObKdYQB4U5l6a4-mTRz"
+  ],
+  "potential_entities": [
+    "Emma Watson",
+    "Robin Williams",
+    "Rupert Grint",
+    "Martin Freeman",
+    "arry Potter",
+    "Hermione",
+    "Alladin",
+    "The boxer",
+    "Kelvin Moore",
+    "Bobbys Father",
+    "Gene ChardAllison Adams",
+    "Laura San Giacomo",
+    "Christophe Bon",
+    "Hackjin Mun"
+  ],
+  "qrels": [
+    [
+      "6",
+      "",
+      "Emma Watson",
+      "2"
+    ],
+    [
+      "6",
+      "",
+      "Robin Williams",
+      "2"
+    ],
+    [
+      "6",
+      "",
+      "Rupert Grint",
+      "2"
+    ],
+    [
+      "6",
+      "",
+      "Martin Freeman",
+      "2"
+    ],
+    [
+      "6",
+      "",
+      "arry Potter",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Hermione",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Alladin",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "The boxer",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Kelvin Moore",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Bobbys Father",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Gene ChardAllison Adams",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Laura San Giacomo",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Christophe Bon",
+      "0"
+    ],
+    [
+      "6",
+      "",
+      "Hackjin Mun",
+      "0"
+    ]
+  ]
+}

@@ -11,8 +11,8 @@ def calc_similarity(fetch_ranking_topk, query, seed_entity, potential_entities, 
         topSimilarities = []
         for result_weight_vector in weights.tolist():
             result_weight_vector = np.array([result_weight_vector])
-            # similarityMatrix = cosine_similarity(result_weight_vector, interesting_weights)
-            similarityMatrix = 0 - (abs(interesting_weights - result_weight_vector)).sum(axis=1)
+            similarityMatrix = (abs(interesting_weights - result_weight_vector)).sum(axis=1)
+            similarityMatrix = np.exp(-1*similarityMatrix)
             topSim = similarityMatrix.sum()
             topSimilarities.append(topSim)
         n = 4

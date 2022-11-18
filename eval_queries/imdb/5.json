@@ -1,0 +1,132 @@
+{
+  "query_id": "5",
+  "query": "comedy Jim Carrey Christmas",
+  "seed_entity": "Grinch",
+  "interesting_documents": [
+    "A-bMdYQB4U5l6a4-NlXo",
+    "kOXGdYQB4U5l6a4-MdSb"
+  ],
+  "potential_entities": [
+    "Mayor Augustus Maywho",
+    "Clarnella",
+    "Christina Whoterberry",
+    "Martha May Whovier",
+    "Clara",
+    "Sugar Plum",
+    "Snowman",
+    "Kevin",
+    "Danny Harland",
+    "Lord Lebanon",
+    "Dr. Rasool",
+    "Delicatessen Clerk",
+    "Thelma Teddy Shaw",
+    "Margot",
+    "Frula Trueba",
+    "Terry McCaleb",
+    "Professor Horvard"
+  ],
+  "qrels": [
+    [
+      "5",
+      "",
+      "Mayor Augustus Maywho",
+      "2"
+    ],
+    [
+      "5",
+      "",
+      "Clarnella",
+      "2"
+    ],
+    [
+      "5",
+      "",
+      "Christina Whoterberry",
+      "2"
+    ],
+    [
+      "5",
+      "",
+      "Martha May Whovier",
+      "2"
+    ],
+    [
+      "5",
+      "",
+      "Clara",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Sugar Plum",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Snowman",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Kevin",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Danny Harland",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Lord Lebanon",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Dr. Rasool",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Delicatessen Clerk",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Thelma Teddy Shaw",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Margot",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Frula Trueba",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Terry McCaleb",
+      "0"
+    ],
+    [
+      "5",
+      "",
+      "Professor Horvard",
+      "0"
+    ]
+  ]
+}

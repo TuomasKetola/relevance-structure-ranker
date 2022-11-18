@@ -4,8 +4,7 @@
   "seed_entity": "Vito Corleone",
   "interesting_documents": [
     "YeXFdYQB4U5l6a4-0sza",
-    "q-bMdYQB4U5l6a4-WVfe",
-    "UebLdYQB4U5l6a4-ykwz"
+    "q-bMdYQB4U5l6a4-WVfe"
   ],
   "potential_entities": [
     "Al Capone",
@@ -13,7 +12,27 @@
     "Matt Damon",
     "Frank Lukas",
     "Frank Costello",
-    "Wilson Fisk"
+    "Wilson Fisk",
+    "Csar Seabra",
+    "Jim Berkley",
+    "Selenia",
+    "Missy Ross",
+    "Judge Thomas Danforth",
+    "Brett Dolan",
+    "Benjamin Gates",
+    "Michael Banks",
+    "Sister Ana",
+    "Overmeyers",
+    "Ha Jeong Hwa",
+    "Smart Ass",
+    "Liquor Store Gunman",
+    "Grace Bailey",
+    "Poacher",
+    "Colonel Arbuthnot",
+    "Stanley Webber",
+    "Young Tony",
+    "Doggie",
+    "Marisa Granger"
   ],
   "qrels": [
     [
@@ -50,6 +69,126 @@
       "1",
       "",
       "Wilson Fisk",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Csar Seabra",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Jim Berkley",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Selenia",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Missy Ross",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Judge Thomas Danforth",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Brett Dolan",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Benjamin Gates",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Michael Banks",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Sister Ana",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Overmeyers",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Ha Jeong Hwa",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Smart Ass",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Liquor Store Gunman",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Grace Bailey",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Poacher",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Colonel Arbuthnot",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Stanley Webber",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Young Tony",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Doggie",
+      "0"
+    ],
+    [
+      "1",
+      "",
+      "Marisa Granger",
       "0"
     ]
   ]

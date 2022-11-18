@@ -4,7 +4,7 @@ import argparse
 import json
 import os
 
-from rerankers import static, icfwLA, icfwG
+from rerankers import static, icfwLA, icfwG, linear
 
 def import_json(path):
     with open(path, 'r') as in_:
@@ -33,6 +33,7 @@ def retrieve(query, index_name, model_name):
             'static': static,
             'icfwLA': icfwLA,
             'icfwG': icfwG,
+            'linear': linear,
             }
 
     dataSetInfo = import_json('datasetInfo.json')[index_name]
@@ -52,8 +53,8 @@ if __name__ == '__main__':
 
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-index_name", help="name of the index", default='trec-web')
-    parser.add_argument("-query", help="query", default='foreign minorities germany')
+    parser.add_argument("-index_name", help="name of the index", default='imdb')
+    parser.add_argument("-query", help="query", default='Indiana Jones Ford')
     parser.add_argument("-model_name", help="model name", default='icfwLA')
 
     args = parser.parse_args()

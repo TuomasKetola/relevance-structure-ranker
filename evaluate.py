@@ -6,7 +6,7 @@ import json
 import csv
 import numpy as np
 import retrieve
-from similarity import cosineSim, absoluteSim
+from similarity import cosineSim, absoluteSim, manhattanSim, chi2Sim
 from sklearn.metrics import ndcg_score
 from sklearn.metrics import average_precision_score
 from collections import defaultdict
@@ -95,7 +95,9 @@ def create_if_not_exsists(dir_):
 def evaluate(index_name, model_name, simModelName, query_file):
     similarityModeldict = {
             "cosineSim": cosineSim,
-            "absoluteSim": absoluteSim
+            "absoluteSim": absoluteSim,
+            "manhattanSim": manhattanSim,
+            "chi2Sim": chi2Sim,
             }
 
     ES_PASSWORD = '8kDCKZ2ZwFhRAQmFy6JP'
@@ -126,19 +128,23 @@ def evaluate(index_name, model_name, simModelName, query_file):
         ranking, weights = fetch_ranking_topk(seed_entity_query, index_name, model_name, k=100)
         ranking_ids = [x[0] for x in ranking]
         try:
-            interesting_weights = [weights[ranking_ids.index(x)] for x in interesting_documents]
-        except:
+            interesting_weights = [weights[ranking_ids.index(x)] for x in interesting_documents if x in ranking_ids]
+        except IndexError:
             import pdb;pdb.set_trace()
+        if not interesting_weights:
+            rank_scores = [(x,0) for x in potential_entities]
 
-        rank_scores, entity_rel = similarityModeldict[simModelName].calc_similarity(
-                fetch_ranking_topk,
-                seed_entity_query, 
-                seed_entity, 
-                potential_entities, 
-                interesting_weights, 
-                index_name, 
-                model_name,
-                es)
+
+        else:
+            rank_scores, entity_rel = similarityModeldict[simModelName].calc_similarity(
+                    fetch_ranking_topk,
+                    seed_entity_query, 
+                    seed_entity, 
+                    potential_entities, 
+                    interesting_weights, 
+                    index_name, 
+                    model_name,
+                    es)
         rank_scores = sorted(rank_scores, key= lambda tup:tup[1], reverse=True)
         rank_scores = [(x[0], round(x[1],4)) for x in rank_scores]
         rank_scores_dict = dict(rank_scores)

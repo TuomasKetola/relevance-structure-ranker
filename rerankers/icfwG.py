@@ -35,6 +35,7 @@ def rankerFunction(fields, query_data, datasetInfo):
 
     lambda_[np.isnan(lambda_)] = 0
     lambda_[np.isinf(lambda_)] = 0
+    lambda_[lambda_ < 0] = 0 
 
     # calculate weights
     p_t_d = arr_data['p_t_d']

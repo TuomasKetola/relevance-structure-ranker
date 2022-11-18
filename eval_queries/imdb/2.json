@@ -3,7 +3,8 @@
   "query": "italian mafia",
   "seed_entity": "Pacino",
   "interesting_documents": [
-    "UebLdYQB4U5l6a4-ykwz"
+    "UebLdYQB4U5l6a4-ykwz",
+    "YeXFdYQB4U5l6a4-0sza"
   ],
   "potential_entities": [
     "Marlon Brando",
@@ -12,7 +13,27 @@
     " Joe Pesci",
     "Matt Damon",
     "Al Capone",
-    "Michael Corleone"
+    "Michael Corleone",
+    "Dan Weston",
+    "Madame Graziani",
+    "Nemesii",
+    "Angela Pritchard",
+    "John Kane",
+    "Matthew Brennan",
+    "Pooter",
+    "Charles Fairfield",
+    "Flack",
+    "Patricia Pat Pemberton",
+    "Frederick Treves",
+    "Hutch Bessy",
+    "Trooper Grady",
+    "Matt Howard",
+    "Al Howard",
+    "Ms. Gilroy",
+    "1st Puddlian",
+    "Art Gallery Waiter",
+    "Susan Maracek",
+    "Jimmy Wheeler"
   ],
   "qrels": [
     [
@@ -55,6 +76,126 @@
       "2",
       "",
       "Michael Corleone",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Dan Weston",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Madame Graziani",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Nemesii",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Angela Pritchard",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "John Kane",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Matthew Brennan",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Pooter",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Charles Fairfield",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Flack",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Patricia Pat Pemberton",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Frederick Treves",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Hutch Bessy",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Trooper Grady",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Matt Howard",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Al Howard",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Ms. Gilroy",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "1st Puddlian",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Art Gallery Waiter",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Susan Maracek",
+      "0"
+    ],
+    [
+      "2",
+      "",
+      "Jimmy Wheeler",
       "0"
     ]
   ]
