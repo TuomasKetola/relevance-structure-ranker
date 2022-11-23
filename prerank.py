@@ -123,7 +123,7 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
     for feature in fields:
         query_body = {
                 'query': {
-                      'multi_match':{
+                      'query_string':{
                         'query': query_data['query'],
                         'fields': [feature]}
                     }
@@ -136,7 +136,7 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
                         "bool": {
                             "must": [
                                 {
-                                    "multi_match": {
+                                    "query_string": {
                                         "query": query_data['query'],
                                         "fields": [feature]
                                                     }
@@ -291,7 +291,8 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
                                 avgfl = sub_metric_details['value']
                                 result_set[doc_id][feature]['avgfl'] = avgfl
 
-    query_terms = query.split(' ')
+    query_clean = query.replace('OR ','').replace('AND ','').replace('(','').replace(')','').lower()
+    query_terms = query_clean.split(' ')
     for doc_id, results in result_set.items():
         for feat in fields:
             if feat not in results.keys():
@@ -481,13 +482,13 @@ def make_numpy_arrs(query_data, index_name):
 
 
 def retrieve_documents(query, index_name):
-    query = query.lower()
+    query_clean = query.replace('OR ','').replace('AND ','').replace('(','').replace(')','').lower()
 
     # initialize query_data
     dataSetInfo = import_json('datasetInfo.json')
     fields = dataSetInfo[index_name]['fields']
     # query_terms = stemText(query.split(' '))
-    query_terms = [x.lower() for x in query.split(' ')]
+    query_terms = [x.lower() for x in query_clean.split(' ')]
     query_data = {
             'query':' '.join(query_terms),
             'q_term_idfs': {field:{} for  field in fields},

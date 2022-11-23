@@ -101,6 +101,14 @@ def create_if_not_exsists(dir_):
     if not os.path.exists(dir_):
         os.makedirs(dir_)
 
+def make_full_query(q, ent):
+    q_split = q.strip().split(' ')
+    q = q.strip()
+    if len(ent.split(' ')) == 1:
+        return q + ' OR '+ ent
+    else:
+        return q.replace(' ',' OR ') + ' OR ' + '({})'.format(ent.replace(' ', ' AND '))
+
 
 def evaluate(index_name, model_name, simModelName, query_file):
     similarityModeldict = {
@@ -131,7 +139,7 @@ def evaluate(index_name, model_name, simModelName, query_file):
         query_id = file['query_id']
         query = file['query']
         seed_entity = file['seed_entity']
-        seed_entity_query = query + ' ' +seed_entity
+        seed_entity_query = make_full_query(query, seed_entity)
         qrels = file['qrels']
         potential_entities = file['potential_entities']
         interesting_documents = file['interesting_documents']
