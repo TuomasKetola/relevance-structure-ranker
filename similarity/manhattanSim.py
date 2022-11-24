@@ -1,12 +1,29 @@
 from sklearn.metrics.pairwise import manhattan_distances
 import numpy as np
 
+def make_new_query(old_query, seed_entity, new_entity):
+    if len(seed_entity.split(' ')) > 1:
+        if len(new_entity.split(' ')) > 1:
+            new_query = old_query.replace(seed_entity.replace(' ',' AND '), new_entity.replace(' ',' AND '))
+        else:
+            new_query = old_query.replace('('+seed_entity.replace(' ',' AND ')+')', new_entity)
+    else:
+        if len(new_entity.split(' ')) > 1: 
+            new_query = old_query.replace(seed_entity, '(' + new_entity.replace(' ',' AND ')+')')
+        else:
+            new_query = old_query.replace(seed_entity, new_entity)
+    return new_query
+
+
+
 def calc_similarity(fetch_ranking_topk, query, seed_entity, potential_entities, interesting_weights, index_name, model_name, es):
     rank_scores = []
     entity_rel = {}
 
     for entity in potential_entities:
-        new_query = query.replace(seed_entity, entity)
+        # new_query = query.replace(seed_entity, entity)
+
+        new_query = make_new_query(query,seed_entity, entity)
         ranking, weights = fetch_ranking_topk(new_query, index_name, model_name, k=40)
         topSimilarities = []
         for result_weight_vector in weights.tolist():
