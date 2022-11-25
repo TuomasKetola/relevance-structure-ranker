@@ -182,13 +182,13 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
 
             explanation = hit['_explanation']
             for term_details in explanation['details']:
-                # import pdb;pdb.set_trace()
 
                 try:
                     term = re.search('weight\({}:(.*?) '.format(feature), term_details['description']).group(1)
                     metric_details_lst  = term_details['details'][0]['details']
                 except AttributeError:
-                    term = re.search('weight\({}:(.*?) '.format(feature), explanation['description']).group(1)
+                    
+                    term = re.search('weight\({}:(.*?) '.format(feature), explanation['details']['description']).group(1)
                     metric_details_lst  = term_details['details']
                 result_set[doc_id][feature]['terms'].append(term)
                 for metric_details in metric_details_lst:
@@ -377,7 +377,7 @@ def make_numpy_arrs(query_data, index_name):
             for field in fields}
 
     query_data['numpy_data'] = {}
-    terms = [x.lower() for x in query_data['query'].split(' ')]
+    terms = [x for x in query_terms if x]
     field_tfs = {field: [] for field in fields}
     field_lengths = {field: [] for field in fields}
     field_scores = {field: [] for field in fields}
@@ -488,9 +488,10 @@ def retrieve_documents(query, index_name):
     dataSetInfo = import_json('datasetInfo.json')
     fields = dataSetInfo[index_name]['fields']
     # query_terms = stemText(query.split(' '))
+    global query_terms
     query_terms = [x.lower() for x in query_clean.split(' ')]
     query_data = {
-            'query':' '.join(query_terms),
+            'query': query,
             'q_term_idfs': {field:{} for  field in fields},
             'fieldNs': {field:None for  field in fields},
             'q_term_dfs': {field:{} for  field in fields} 

@@ -105,8 +105,12 @@ def make_full_query(q, ent):
     q_split = q.strip().split(' ')
     q = q.strip()
     if len(ent.split(' ')) == 1:
+        if len(q_split) > 1:
+            q = q.replace(' ', ' OR ')
         return q + ' OR '+ ent
     else:
+        if len(q_split) > 1:
+            q = q.replace(' ', ' OR ')
         return q.replace(' ',' OR ') + ' OR ' + '({})'.format(ent.replace(' ', ' AND '))
 
 
