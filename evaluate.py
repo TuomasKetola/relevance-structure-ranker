@@ -112,7 +112,7 @@ def make_full_query(q, ent):
         q = q
     
     if len(ent.split(' ')) > 1:
-        ent = '({})'.format(ent.replace(' ', ' OR '))
+        ent = '({})'.format(ent.replace(' ', ' AND '))
     else:
         ent = ent
     return q + ' OR ' + ent
