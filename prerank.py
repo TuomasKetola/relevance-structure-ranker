@@ -51,6 +51,35 @@ def connectES(password, host):
         return es
 
 
+def find_term_details(explanation, feature):
+    terms = []
+    metric_details = []
+    if explanation['description'] == 'sum of:':
+        for item in explanation['details']:
+            if  re.search('weight\({}:(.*?) '.format(feature), item['description']):
+                term =  re.search('weight\({}:(.*?) '.format(feature), item['description']).group(1)
+                metric_details_lst = item['details'][0]['details']
+                terms.append(term)
+                metric_details.append(metric_details_lst)
+            else:
+
+                if item['description'] == 'sum of:':
+                    for sub_item in item['details']:
+
+                        term =  re.search('weight\({}:(.*?) '.format(feature), sub_item['description']).group(1)
+                        metric_details_lst = sub_item['details'][0]['details']
+                        terms.append(term)
+                        metric_details.append(metric_details_lst)
+                else:
+                    print('what')
+                    import pdb;pdb.set_trace()
+    else:
+        print('what 2')
+        import pdb;pdb.set_trace()
+    return terms, metric_details
+
+
+
 def retrieveBM25F(query, fields, es, query_data, index_name):
     """
     function to do bm25f retrieval in order to find out global df etc metrics
@@ -110,6 +139,7 @@ def retrieveBM25F(query, fields, es, query_data, index_name):
     query_data['bm25f_doc_ids'] = bm25f_ids
 
 
+
 def retrieveBM25FSA(query, fields, es, query_data, index_name):
     result_set = {}
 
@@ -120,6 +150,7 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
             'dbpedia': 'id',
             'imdb': 'movie_id'}
         
+    print(query_data['query'])
     for feature in fields:
         query_body = {
                 'query': {
@@ -158,6 +189,7 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
         # normal docs 
         q_doc_lst = []
         query_id  = 'nan'
+
         for hit in resp['hits']['hits']:
             doc_id = hit['_source'][uniqueIdDict[index_name]]
             q_doc_lst.append((query_id, doc_id))
@@ -181,16 +213,20 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
             result_set[doc_id][feature]['score'] = score
 
             explanation = hit['_explanation']
-            for term_details in explanation['details']:
+            terms, term_details  = find_term_details(explanation, feature)
+            
+            # for term_details in explanation['details']:
 
-                try:
-                    term = re.search('weight\({}:(.*?) '.format(feature), term_details['description']).group(1)
-                    metric_details_lst  = term_details['details'][0]['details']
-                except AttributeError:
-                    
-                    term = re.search('weight\({}:(.*?) '.format(feature), explanation['details']['description']).group(1)
-                    metric_details_lst  = term_details['details']
+            #     try:
+            #         term = re.search('weight\({}:(.*?) '.format(feature), term_details['description']).group(1)
+            #         metric_details_lst  = term_details['details'][0]['details']
+            #     except AttributeError:
+            #         term = re.search('weight\({}:(.*?) '.format(feature), explanation['details']['description']).group(1)
+            #         metric_details_lst  = term_details['details']
+
+            for term, metric_details_lst in zip(terms, term_details):
                 result_set[doc_id][feature]['terms'].append(term)
+                
                 for metric_details in metric_details_lst:
 
                     if 'idf, computed as' in metric_details['description']:

@@ -101,17 +101,21 @@ def create_if_not_exsists(dir_):
     if not os.path.exists(dir_):
         os.makedirs(dir_)
 
+
 def make_full_query(q, ent):
     q_split = q.strip().split(' ')
     q = q.strip()
-    if len(ent.split(' ')) == 1:
-        if len(q_split) > 1:
-            q = q.replace(' ', ' OR ')
-        return q + ' OR '+ ent
+    if len(q_split) > 1:
+        q = q.replace(' ', ' OR ')
+
+    elif len(q_split) == 1:
+        q = q
+    
+    if len(ent.split(' ')) > 1:
+        ent = '({})'.format(ent.replace(' ', ' OR '))
     else:
-        if len(q_split) > 1:
-            q = q.replace(' ', ' OR ')
-        return q.replace(' ',' OR ') + ' OR ' + '({})'.format(ent.replace(' ', ' AND '))
+        ent = ent
+    return q + ' OR ' + ent
 
 
 def evaluate(index_name, model_name, simModelName, query_file):
