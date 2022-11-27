@@ -1,0 +1,47 @@
+{
+  "query_id": "9",
+  "query": "Bruce Willis Samuel Jackson",
+  "seed_entity": "Die Hard 3",
+  "interesting_documents": [
+    "9OXFdYQB4U5l6a4-989c"
+  ],
+  "potential_entities": [
+    "Unbreakable",
+    "Die Hard: With a Vengeance",
+    "Live Free or Die Hard",
+    "Die Hard 2",
+    "Die Hard"
+  ],
+  "qrels": [
+    [
+      "9",
+      "",
+      "Unbreakable",
+      "2"
+    ],
+    [
+      "9",
+      "",
+      "Die Hard: With a Vengeance",
+      "2"
+    ],
+    [
+      "9",
+      "",
+      "Live Free or Die Hard",
+      "0"
+    ],
+    [
+      "9",
+      "",
+      "Die Hard 2",
+      "0"
+    ],
+    [
+      "9",
+      "",
+      "Die Hard",
+      "0"
+    ]
+  ]
+}

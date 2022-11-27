@@ -1,0 +1,69 @@
+{
+  "query_id": "8",
+  "query": "Christmas Bruce Willis",
+  "seed_entity": "John McClane",
+  "interesting_documents": [
+    "p-bJdYQB4U5l6a4-AhJf",
+    "W-bLdYQB4U5l6a4-e0ZL"
+  ],
+  "potential_entities": [
+    "John McClane",
+    "Holly Gennaro",
+    "Al Powell",
+    "Hans Gruber",
+    "Zeus Carver",
+    "Simon Peter-Gruber",
+    "Harry S. Stamper",
+    "Jimmy Dix"
+  ],
+  "qrels": [
+    [
+      "8",
+      "",
+      "John McClane",
+      "2"
+    ],
+    [
+      "8",
+      "",
+      "Holly Gennaro",
+      "2"
+    ],
+    [
+      "8",
+      "",
+      "Al Powell",
+      "2"
+    ],
+    [
+      "8",
+      "",
+      "Hans Gruber",
+      "2"
+    ],
+    [
+      "8",
+      "",
+      "Zeus Carver",
+      "0"
+    ],
+    [
+      "8",
+      "",
+      "Simon Peter-Gruber",
+      "0"
+    ],
+    [
+      "8",
+      "",
+      "Harry S. Stamper",
+      "0"
+    ],
+    [
+      "8",
+      "",
+      "Jimmy Dix",
+      "0"
+    ]
+  ]
+}
