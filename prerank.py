@@ -56,23 +56,30 @@ def find_term_details(explanation, feature):
     metric_details = []
     if explanation['description'] == 'sum of:':
         for item in explanation['details']:
-            if  re.search('weight\({}:(.*?) '.format(feature), item['description']):
-                term =  re.search('weight\({}:(.*?) '.format(feature), item['description']).group(1)
-                metric_details_lst = item['details'][0]['details']
-                terms.append(term)
-                metric_details.append(metric_details_lst)
-            else:
-
-                if item['description'] == 'sum of:':
-                    for sub_item in item['details']:
-
-                        term =  re.search('weight\({}:(.*?) '.format(feature), sub_item['description']).group(1)
-                        metric_details_lst = sub_item['details'][0]['details']
-                        terms.append(term)
-                        metric_details.append(metric_details_lst)
+            if item['description'] != 'match on required clause, product of:':
+                if  re.search('weight\({}:(.*?) '.format(feature), item['description']):
+                    term =  re.search('weight\({}:(.*?) '.format(feature), item['description']).group(1)
+                    metric_details_lst = item['details'][0]['details']
+                    terms.append(term)
+                    metric_details.append(metric_details_lst)
                 else:
-                    print('what')
-                    import pdb;pdb.set_trace()
+
+                    if item['description'] == 'sum of:':
+                        for sub_item in item['details']:
+                            if re.search('weight\({}:(.*?) '.format(feature), sub_item['description']):
+                                term =  re.search('weight\({}:(.*?) '.format(feature), sub_item['description']).group(1)
+                                metric_details_lst = sub_item['details'][0]['details']
+                                terms.append(term)
+                                metric_details.append(metric_details_lst)
+                            else:
+                                for sub_sub_item in sub_item['details']:
+                                    term =  re.search('weight\({}:(.*?) '.format(feature), sub_sub_item['description']).group(1)
+                                    metric_details_lst = sub_sub_item['details'][0]['details']
+                                    terms.append(term)
+                                    metric_details.append(metric_details_lst)
+                    else:
+                        print('what')
+                        import pdb;pdb.set_trace()
     else:
         print('what 2')
         import pdb;pdb.set_trace()
@@ -284,19 +291,27 @@ def retrieveBM25FSA(query, fields, es, query_data, index_name):
                 import pdb;pdb.set_trace()
 
             explanation = hit['_explanation']
-            for term_details in explanation['details'][0]['details']:
 
-                try:
-                    term = re.search('weight\({}:(.*?) '.format(feature), term_details['description']).group(1)
-                    metric_details_lst  = term_details['details'][0]['details']
-                except AttributeError:
-                    try:
-                        term = re.search('weight\({}:(.*?) '.format(feature), explanation['description']).group(1)
-                        metric_details_lst  = term_details['details']
-                        print('here')
-                    except AttributeError:
-                        term = re.search('weight\({}:(.*?) '.format(feature), explanation['details'][0]['description']).group(1)
-                        metric_details_lst  = term_details['details']
+            terms, term_details  = find_term_details(explanation, feature)
+            # for term_details in explanation['details'][0]['details']:
+            # 
+            #     try:
+            #         term = re.search('weight\({}:(.*?) '.format(feature), term_details['description']).group(1)
+            #         metric_details_lst  = term_details['details'][0]['details']
+            #     except AttributeError:
+            #         try:
+            #             term = re.search('weight\({}:(.*?) '.format(feature), explanation['description']).group(1)
+            #             metric_details_lst  = term_details['details']
+            #             print('here')
+            #        except AttributeError:
+            # 
+            #             try:
+            #                 term = re.search('weight\({}:(.*?) '.format(feature), explanation['details'][0]['description']).group(1)
+            #            except:
+            #                 import pdb;pdb.set_trace()
+            #             metric_details_lst  = term_details['details']
+
+            for term, metric_details_lst in zip(terms, term_details):
                 result_set[doc_id][feature]['terms'].append(term)
                 for metric_details in metric_details_lst:
 
