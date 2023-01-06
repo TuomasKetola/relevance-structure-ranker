@@ -1,5 +1,5 @@
 
-declare -a agg_models=("linear" "icfwG" "icfwLA")
+declare -a agg_models=("linear" "icfwG" "icfwLA" "icfwGA")
 declare -a sim_models=("manhattanSim" "chi2Sim" "cosineSim")
 
 for agg in "${agg_models[@]}"; do

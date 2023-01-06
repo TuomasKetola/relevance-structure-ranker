@@ -19,13 +19,14 @@ def make_new_query(old_query, seed_entity, new_entity):
     return new_query
 
 
+
 def calc_similarity(fetch_ranking_topk, query, seed_entity, potential_entities, interesting_weights, index_name, model_name, es):
     rank_scores = []
     entity_rel = {}
 
     for entity in potential_entities:
         new_query = make_new_query(query,seed_entity, entity)
-        # new_query = query.replace(seed_entity, entity)
+        # new_query = quer:y.replace(seed_entity, entity)
         ranking, weights = fetch_ranking_topk(new_query, index_name, model_name, k=40)
         topSimilarities = []
         for result_weight_vector in weights.tolist():

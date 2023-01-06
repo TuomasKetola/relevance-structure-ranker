@@ -4,7 +4,7 @@ import argparse
 import json
 import os
 
-from rerankers import static, icfwLA, icfwG, linear
+from rerankers import static, icfwLA, icfwG, icfwGA, linear
 
 def import_json(path):
     with open(path, 'r') as in_:
@@ -33,6 +33,7 @@ def retrieve(query, index_name, model_name):
             'static': static,
             'icfwLA': icfwLA,
             'icfwG': icfwG,
+            'icfwGA': icfwGA,
             'linear': linear,
             }
 

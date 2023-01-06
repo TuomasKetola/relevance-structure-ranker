@@ -21,11 +21,11 @@ def rankerFunction(fields, query_data, datasetInfo):
         return lambda_, None
     df_arr = df_arr[idf_arr > 1.0]
     max_dfs = df_arr.max()
-    min_dfs = df_arr.min()
+    min_dfs = df_arr[df_arr!=df_arr.max()].mean()
     idf_arr = idf_arr[idf_arr > 1.0] 
     # idf_ratio = idf_arr.mean(axis=1).max()  / idf_arr[idf_arr!=idf_arr.max()].mean()
     idf_max = idf_arr.max()
-    idf_min = idf_arr.min()
+    idf_min = idf_arr[idf_arr!=idf_arr.max()].mean()
     idf_ratio = idf_max / idf_min
     Z = idf_ratio
 
